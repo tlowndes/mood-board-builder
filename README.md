@@ -48,9 +48,9 @@ npm run dist     # build the Windows installer and portable zip into dist/
 
 ### Releasing an update
 
-1. Bump `version` in `package.json` (e.g. `1.0.1`) and commit.
-2. Tag and push: `git tag v1.0.1 && git push origin main --tags`
-3. The **Release** GitHub Action builds the installer on Windows and publishes a GitHub Release.
+1. Bump `version` in `package.json` (e.g. `1.0.1`) and commit to `main`.
+2. On GitHub, open **Actions → Release → Run workflow** (or push a tag such as `v1.0.1`).
+3. The workflow builds the installer on Windows and publishes a GitHub Release tagged `v1.0.1`.
 4. Installed copies check for updates on launch (and every 6 hours), download in the background and offer **Restart now**.
 
 The repository needs to be **public** for the updater to see releases without a token.
