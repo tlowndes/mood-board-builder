@@ -1,0 +1,62 @@
+{
+  "name": "mood-board-builder",
+  "productName": "Mood Board Builder",
+  "version": "1.0.0",
+  "description": "Tile a folder of reference images, or a Pinterest board, into a clean PDF or JPEG mood board for art direction briefs.",
+  "main": "src/main/main.js",
+  "author": "Tom Lowndes",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test test/*.test.js",
+    "dist": "electron-builder --win nsis zip --publish never",
+    "release": "electron-builder --win nsis zip --publish always"
+  },
+  "dependencies": {
+    "electron-updater": "6.8.11",
+    "pdf-lib": "1.17.1"
+  },
+  "devDependencies": {
+    "electron": "45.2.1",
+    "electron-builder": "26.18.0"
+  },
+  "build": {
+    "appId": "uk.co.tomlowndes.moodboardbuilder",
+    "productName": "Mood Board Builder",
+    "files": [
+      "src/**/*",
+      "build/icon.png",
+      "package.json",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "zip"
+      ],
+      "icon": "build/icon.ico",
+      "artifactName": "Mood-Board-Builder-${version}-win-portable.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "artifactName": "Mood-Board-Builder-Setup-${version}.${ext}"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "tlowndes",
+        "repo": "mood-board-builder",
+        "releaseType": "release"
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tlowndes/mood-board-builder.git"
+  }
+}
