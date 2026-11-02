@@ -1,8 +1,10 @@
-# Push a tag like v1.0.1 and this builds the Windows installer and publishes a GitHub Release.
+# Builds the Windows installer and publishes a GitHub Release for the version in package.json.
+# Run it from the Actions tab (Release > Run workflow), or push a tag like v1.0.1.
 # Installed copies of the app pick up the new release automatically.
 name: Release
 
 on:
+  workflow_dispatch:
   push:
     tags: ['v*']
 
@@ -21,6 +23,7 @@ jobs:
       - run: npm ci
       - run: npm test
       - name: Check the tag matches package.json
+        if: github.ref_type == 'tag'
         shell: bash
         run: |
           v="$(node -p "require('./package.json').version")"
